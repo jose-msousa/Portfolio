@@ -1,0 +1,25 @@
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
+
+    // Substitua pelo seu e-mail
+    $to = "jose-msousa@hotmail.com";  
+    $subject = "Contato do site: " . $subject;
+    $body = "Nome: $name\n";
+    $body .= "Email: $email\n";
+    $body .= "Telefone: $phone\n";
+    $body .= "Mensagem:\n$message";
+
+    // Cabeçalhos do e-mail
+    $headers = "From: $email";
+
+    // Função para enviar o e-mail
+    if (mail($to, $subject, $body, $headers)) {
+        echo "Mensagem enviada com sucesso!";
+    } else {
+        echo "Falha ao enviar mensagem.";
+    }
+}
